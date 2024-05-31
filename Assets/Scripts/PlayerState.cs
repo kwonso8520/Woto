@@ -1,0 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum PlayerState
+{
+    Idle, Run, Attack, Block, Dodge, Crouch,Jump
+}
