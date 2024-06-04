@@ -71,10 +71,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         scene = SceneManager.GetActiveScene();
     }
-    public void LoadNextScene()
+    public void LoadGameScene()
     {
-        int nestScene = scene.buildIndex + 1;
-        SceneManager.LoadScene(nestScene);
+        PhotonNetwork.LoadLevel("GameScene");
     }
   
     public void LoadTitleScene()
@@ -88,7 +87,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (scene.name == "GameScene")
             {
                 Debug.Log("플레이어 생성");
-                Instantiate(playerPrefab[myWeapon], playerPos, Quaternion.identity);
+                PhotonNetwork.Instantiate(playerPrefab[myWeapon].name, playerPos, Quaternion.identity);
                 yield  break;
             }
             yield return null;
@@ -147,12 +146,14 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         // 최대 2명을 수용 가능한 빈방을 생성
+        Debug.Log("CreateRoom");
         PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 2});
     }
 
     // 룸에 참가 완료된 경우 자동 실행
     public override void OnJoinedRoom()
     {
+        Debug.Log("JoinedRoom");
         // 모든 룸 참가자들이 Main 씬을 로드하게 함
         PhotonNetwork.LoadLevel("WeaponSelectScene");
     }

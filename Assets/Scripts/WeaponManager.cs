@@ -10,6 +10,6 @@ public class WeaponManager : MonoBehaviour
         GameObject weapon = EventSystem.current.currentSelectedGameObject;
 
         GameManager.instance.myWeapon = (int)weapon.GetComponent<WeaponButtonValue>().weaponType;
-        GameManager.instance.LoadNextScene();
+        GameManager.instance.LoadGameScene();
     }
 }

@@ -34,6 +34,10 @@ public class PlayerController_Platform : MonoBehaviourPun
     public PlayerState currentState = PlayerState.Idle;
     private void Start()
     {
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         anim = GetComponent<Animator>();
         playerRigid = GetComponent<Rigidbody>();
         hp = maxHp;

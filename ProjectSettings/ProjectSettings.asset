@@ -154,9 +154,10 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.Woto
   buildNumber:
-    Standalone: 0
+    Standalone: 0.1
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
@@ -719,7 +720,12 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -734,11 +740,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 0295af73-560c-4ba1-972a-751083da66ca
+  cloudProjectId: c7903f4e-d043-4f4c-b34a-8c472cce8281
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Woto 2024-05-09_16-37-00
-  organizationId: rnjstjrdnjs
+  projectName: Woto
+  organizationId: seokwon2
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
