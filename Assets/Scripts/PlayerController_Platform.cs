@@ -32,6 +32,11 @@ public class PlayerController_Platform : MonoBehaviourPun
     private Rigidbody playerRigid;
 
     public PlayerState currentState = PlayerState.Idle;
+
+    private bool isBlock;
+
+    private float receiveDamage;
+
     private void Start()
     {
         if (!photonView.IsMine)
@@ -59,7 +64,14 @@ public class PlayerController_Platform : MonoBehaviourPun
 
         Rotate();
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
-
+        if(currentState == PlayerState.Block)
+        {
+            isBlock = true;
+        }
+        else
+        {
+            isBlock = false;
+        }
         if (!isJump)
         {            
             Attack();
@@ -409,6 +421,50 @@ public class PlayerController_Platform : MonoBehaviourPun
         if(hp > 0)
         {
             
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Weapon"))
+        {
+            var otherComponent = other.gameObject.GetComponentInParent<PlayerController_Platform>();
+            switch (otherComponent.currentState)
+            {
+                case PlayerState.Attack1:
+                    receiveDamage = 5f;
+                    break;
+                case PlayerState.Attack2:
+                    receiveDamage = 6f;
+                    break;
+                case PlayerState.Attack3:
+                    receiveDamage = 7f;
+                    break;
+                case PlayerState.Skill1:
+                    receiveDamage = 8f;
+                    break;
+                case PlayerState.Skill2:
+                    receiveDamage = 9f;
+                    break;
+                case PlayerState.Skill3:
+                    receiveDamage = 0f;
+                    break;
+                case PlayerState.Skill4:
+                    receiveDamage = 10f;
+                    break;
+                case PlayerState.Skill5:
+                    receiveDamage = 0f;
+                    break;
+                case PlayerState.Skill6:
+                    receiveDamage = 7f;
+                    break;
+                case PlayerState.Skill7:
+                    receiveDamage = 8f;
+                    break;
+                case PlayerState.Skill8:
+                    receiveDamage = 9f;
+                    break;
+            }
+            hp -= receiveDamage;
         }
     }
 }

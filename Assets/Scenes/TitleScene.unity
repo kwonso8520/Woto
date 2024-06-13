@@ -559,6 +559,7 @@ GameObject:
   - component: {fileID: 380852692}
   - component: {fileID: 380852691}
   - component: {fileID: 380852693}
+  - component: {fileID: 380852694}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -578,24 +579,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15f0a2dd0f04104c8fd55d51ab6c168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab:
-  - {fileID: 5196087120698505280, guid: b697301ea6be6304cb5c470a0962edd3, type: 3}
-  - {fileID: 3765607108262930007, guid: a8a41b422cfcb574f915b61d7fe2cdc0, type: 3}
-  - {fileID: 5362795894313373656, guid: 8b3fe235f4773264ebd387ebdc2aee6e, type: 3}
-  - {fileID: 1926067400528623986, guid: 773f98b1ef7b00544a69dfaef28bb726, type: 3}
-  - {fileID: 9109515249315362238, guid: 1b1f1b8a5ec6e8a4e93d4dec119d4dab, type: 3}
-  - {fileID: 323567281939679933, guid: 48b083f4717c5a545bcf044392d35a98, type: 3}
-  - {fileID: 6128745959236798497, guid: 2a6ab906da4ccaf46870206151cb8d4d, type: 3}
-  - {fileID: 7684030890784060203, guid: 039c93f28a45dea45bb72072a70b1d2a, type: 3}
-  - {fileID: 1257312855442293825, guid: 6a688af05927e924ca0840631ccf9277, type: 3}
-  - {fileID: 6521512740114017381, guid: cfe0b47a98dfdae4c90f1b8445218859, type: 3}
-  - {fileID: 2196900382641084554, guid: f8bf8765c3c80f34596a84de18b51dff, type: 3}
-  - {fileID: 1024223806322809286, guid: 5a683881b32d84748b285040bc31a076, type: 3}
+  playerPrefab: []
   myWeapon: 0
   joinButton: {fileID: 1021254012}
   disconnectionPanel: {fileID: 2115229061}
   pushRetryBtn: 0
-  cameraPrefab: {fileID: 6065895293960517734, guid: bde286f693c83e346bb83b6012634480, type: 3}
+  camera: {fileID: 6065895293960517734, guid: bde286f693c83e346bb83b6012634480, type: 3}
+  cameraPos: {x: 0, y: 4, z: -10}
+  cube: {fileID: 7010553794157046796, guid: 641ec3c19c6207d41ae03ecf874982c5, type: 3}
 --- !u!4 &380852692
 Transform:
   m_ObjectHideFlags: 0
@@ -623,6 +614,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca2492e2df837c47b422b0261e0e879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &380852694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380852690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &391387167
 GameObject:
   m_ObjectHideFlags: 0

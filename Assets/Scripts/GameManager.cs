@@ -40,6 +40,14 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public bool pushRetryBtn;
 
+    public GameObject camera;
+
+    public Vector3 cameraPos = new Vector3(0, 4, -10);
+
+    private float GameTime = 600;
+
+    public GameObject cube;
+
     private void Awake()
     {
         if(instance == null)
@@ -55,8 +63,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(CreatePlayer());
-
         // 접속에 필요한 정보(게임 버전) 설정
         PhotonNetwork.GameVersion = gameVersion;
         // 설정한 정보를 가지고 마스터 서버 접속 시도
@@ -70,6 +76,11 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Update()
     {
         scene = SceneManager.GetActiveScene();
+        GameTime -= Time.deltaTime;
+        if(GameTime <= 0)
+        {
+            
+        }
     }
     public void LoadGameScene()
     {
@@ -79,19 +90,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void LoadTitleScene()
     {
         SceneManager.LoadScene("TitleScene");
-    }
-    IEnumerator CreatePlayer()
-    {
-        while (true)
-        {
-            if (scene.name == "GameScene")
-            {
-                Debug.Log("플레이어 생성");
-                PhotonNetwork.Instantiate(playerPrefab[myWeapon].name, playerPos, Quaternion.identity);
-                yield  break;
-            }
-            yield return null;
-        }
     }
     public override void OnConnectedToMaster()
     {
@@ -154,7 +152,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("JoinedRoom");
-        // 모든 룸 참가자들이 Main 씬을 로드하게 함
         PhotonNetwork.LoadLevel("WeaponSelectScene");
     }
     public void ExitGame()
