@@ -1,9 +1,7 @@
-﻿using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
-public class TargetCamera_Platform : MonoBehaviourPun
+public class TargetCamera_Platform : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("positions")]

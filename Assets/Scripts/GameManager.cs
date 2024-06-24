@@ -27,9 +27,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager instance;
     public GameObject[] playerPrefab;
-    WeaponManager weaponManager;
+
     public int myWeapon;
-    Scene scene;
+
     private Vector3 playerPos = new Vector3(4, 0, 0);
 
     private string gameVersion = "1"; // 게임 버전
@@ -40,13 +40,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public bool pushRetryBtn;
 
-    public GameObject camera;
-
     public Vector3 cameraPos = new Vector3(0, 4, -10);
 
-    private float GameTime = 600;
-
-    public GameObject cube;
 
     private void Awake()
     {
@@ -71,20 +66,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         // 룸 접속 버튼을 잠시 비활성화
         joinButton.interactable = false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        scene = SceneManager.GetActiveScene();
-        GameTime -= Time.deltaTime;
-        if(GameTime <= 0)
-        {
-            
-        }
-    }
     public void LoadGameScene()
     {
-        PhotonNetwork.LoadLevel("GameScene");
+        PhotonNetwork.LoadLevel("WeaponSelectScene");
     }
   
     public void LoadTitleScene()
@@ -101,6 +85,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     // 마스터 서버 접속 실패시 자동 실행
     public override void OnDisconnected(DisconnectCause cause)
     {
+        LoadTitleScene();
         // 룸 접속 버튼을 비활성화
         joinButton.interactable = false;
         // 접속 정보 표시
@@ -128,8 +113,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         // 마스터 서버에 접속중이라면
         if (PhotonNetwork.IsConnected)
         {
-            // 룸 접속 실행
-            PhotonNetwork.JoinRandomRoom();
+            PhotonNetwork.LoadLevel("WeaponSelectScene");
             Debug.Log("2");
         }
         else
@@ -152,7 +136,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("JoinedRoom");
-        PhotonNetwork.LoadLevel("WeaponSelectScene");
+       // PhotonNetwork.LoadLevel("WeaponSelectScene");
+        PhotonNetwork.LoadLevel("GameScene");
     }
     public void ExitGame()
     {

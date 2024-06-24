@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8504126048267497008}
   m_Layer: 0
   m_Name: Player_Staff
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed_rot: 20
   speed_move: 15
-  term: 1
+  term: 2
   isJump: 0
   hp: 0
   myDamage: 0
@@ -242,6 +242,9 @@ MonoBehaviour:
   isSkill: 0
   dashAttackKey: 0
   currentState: 0
+  longDistanceObject: {fileID: 0}
+  magics: []
+  arrowPos: {fileID: 0}
 --- !u!54 &2196900383882381292
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -659,7 +662,7 @@ GameObject:
   - component: {fileID: 2196900382640850182}
   m_Layer: 0
   m_Name: Bip001
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

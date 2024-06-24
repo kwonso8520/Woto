@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 7206580754036150311}
   m_Layer: 0
   m_Name: Player_Hammer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -374,14 +374,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed_rot: 20
   speed_move: 15
-  term: 1
+  term: 2
   isJump: 0
-  hp: 0
-  myDamage: 0
+  hp: 100
   isAction: 0
   isSkill: 0
   dashAttackKey: 0
   currentState: 0
+  longDistanceObject: {fileID: 0}
+  magics: []
+  arrowPos: {fileID: 0}
 --- !u!54 &735632137166101630
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -785,7 +787,7 @@ GameObject:
   - component: {fileID: 323567281939650353}
   m_Layer: 0
   m_Name: Bip001
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2067,6 +2069,7 @@ GameObject:
   - component: {fileID: 7962017669375978278}
   - component: {fileID: 8600358801854873707}
   - component: {fileID: 6079432665651741842}
+  - component: {fileID: 6906242673339345901}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: Weapon
@@ -2139,6 +2142,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6906242673339345901
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3214051780196426807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3410254, y: 1.3452338, z: 1.45}
+  m_Center: {x: 0.00000032639514, y: -0.00000041061625, z: 1.7}
 --- !u!1 &5030489968005453057
 GameObject:
   m_ObjectHideFlags: 0

@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 7684030890783567527}
   m_Layer: 0
   m_Name: Bip001
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1763,7 +1763,7 @@ GameObject:
   - component: {fileID: 7387318267742639197}
   m_Layer: 0
   m_Name: Player_Pistol
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1775,7 +1775,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7684030890784060203}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1784,7 +1784,7 @@ Transform:
   - {fileID: 7684030890783567565}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &7684030890793402695
 Animator:
   serializedVersion: 5
@@ -1820,7 +1820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed_rot: 20
   speed_move: 15
-  term: 1
+  term: 2
   isJump: 0
   hp: 0
   myDamage: 0
@@ -1828,6 +1828,9 @@ MonoBehaviour:
   isSkill: 0
   dashAttackKey: 0
   currentState: 0
+  longDistanceObject: {fileID: 9123052854806225951, guid: 668cafcc1a723eb45b052698dda3bf7e, type: 3}
+  magics: []
+  arrowPos: {fileID: 0}
 --- !u!54 &7684030890784060201
 Rigidbody:
   m_ObjectHideFlags: 0

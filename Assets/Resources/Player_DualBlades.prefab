@@ -1515,7 +1515,7 @@ GameObject:
   - component: {fileID: 1926067400528127230}
   m_Layer: 0
   m_Name: Bip001
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1554,7 +1554,7 @@ GameObject:
   - component: {fileID: 3815258572929561624}
   m_Layer: 0
   m_Name: Player_DualBlades
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1567,7 +1567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926067400528623986}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 4, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1611,14 +1611,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed_rot: 20
   speed_move: 15
-  term: 1
+  term: 2
   isJump: 0
-  hp: 0
-  myDamage: 0
+  hp: 100
   isAction: 0
   isSkill: 0
   dashAttackKey: 0
   currentState: 0
+  lastState: 0
+  longDistanceObject: {fileID: 0}
+  magics: []
+  arrowPos: {fileID: 0}
 --- !u!54 &3815258572929561617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2100,6 +2103,7 @@ GameObject:
   - component: {fileID: 4907122603903483580}
   - component: {fileID: 2489325358059159057}
   - component: {fileID: 3232130640175148664}
+  - component: {fileID: 6159722536479325739}
   m_Layer: 0
   m_Name: DualBlade
   m_TagString: Weapon
@@ -2172,6 +2176,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6159722536479325739
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4278640322445030549}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24721994, y: 0.07651532, z: 4.5719995}
+  m_Center: {x: -0.00000063580273, y: -0.00000042583048, z: 1.5239998}
 --- !u!1 &7563334127838644406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2183,6 +2200,7 @@ GameObject:
   - component: {fileID: 1697591970939142815}
   - component: {fileID: 8150751012402627122}
   - component: {fileID: 9172778371302380123}
+  - component: {fileID: 505612898816464518}
   m_Layer: 0
   m_Name: DualBlade
   m_TagString: Weapon
@@ -2255,6 +2273,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &505612898816464518
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563334127838644406}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24721949, y: 0.07651571, z: 4.5720005}
+  m_Center: {x: 0.00000023841858, y: -0.00000007386507, z: 1.5239997}
 --- !u!1 &8989523651474619712
 GameObject:
   m_ObjectHideFlags: 0

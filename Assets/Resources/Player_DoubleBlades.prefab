@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4825029872835587345}
   - component: {fileID: 3439859320767926348}
   - component: {fileID: 554990406068628698}
+  - component: {fileID: 8822982182001519464}
   m_Layer: 0
   m_Name: DoubleBlades
   m_TagString: Weapon
@@ -115,6 +116,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8822982182001519464
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3933653004571323127}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09675781, y: 0.23876722, z: 9.554737}
+  m_Center: {x: -0.00000028125947, y: 0.0000005327165, z: -0.00000020861643}
 --- !u!1 &5362795894313373184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,7 +1485,7 @@ GameObject:
   - component: {fileID: 5362795894313800276}
   m_Layer: 0
   m_Name: Bip001
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1795,7 +1809,7 @@ GameObject:
   - component: {fileID: 6567829274600272657}
   m_Layer: 0
   m_Name: Player_DoubleBlades
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1852,14 +1866,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed_rot: 20
   speed_move: 15
-  term: 1
+  term: 2
   isJump: 0
-  hp: 0
-  myDamage: 0
+  hp: 100
   isAction: 0
   isSkill: 0
   dashAttackKey: 0
   currentState: 0
+  lastState: 0
+  longDistanceObject: {fileID: 0}
+  magics: []
+  arrowPos: {fileID: 0}
 --- !u!54 &5362795893494585149
 Rigidbody:
   m_ObjectHideFlags: 0

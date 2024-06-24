@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 1015816572570604580}
   m_Layer: 0
   m_Name: Bip001
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1884,7 +1884,7 @@ GameObject:
   - component: {fileID: 8415345499785339151}
   m_Layer: 0
   m_Name: Player_Spear
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1897,7 +1897,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6521512740114017381}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -4, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1941,14 +1941,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed_rot: 20
   speed_move: 15
-  term: 1
+  term: 2
   isJump: 0
   hp: 0
-  myDamage: 0
   isAction: 0
   isSkill: 0
   dashAttackKey: 0
   currentState: 0
+  longDistanceObject: {fileID: 0}
+  magics: []
+  arrowPos: {fileID: 0}
 --- !u!54 &8415345499785339142
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1978,7 +1980,7 @@ CapsuleCollider:
   m_Radius: 0.6
   m_Height: 4.57
   m_Direction: 1
-  m_Center: {x: 0, y: 2.36, z: 0}
+  m_Center: {x: 0, y: 2.36, z: 4.05}
 --- !u!114 &8415345499785339149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2099,6 +2101,7 @@ GameObject:
   - component: {fileID: 1405517210684350470}
   - component: {fileID: 3672207983279453575}
   - component: {fileID: 1798722225867968355}
+  - component: {fileID: 3444840525942199956}
   m_Layer: 0
   m_Name: Spear
   m_TagString: Untagged
@@ -2171,3 +2174,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3444840525942199956
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038564380511571509}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32457837, y: 0.24336627, z: 7.0900226}
+  m_Center: {x: -0.00000034706784, y: 0.00000004133173, z: 3.5450099}

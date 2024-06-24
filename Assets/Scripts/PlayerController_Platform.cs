@@ -21,8 +21,6 @@ public class PlayerController_Platform : MonoBehaviourPun
     private float maxHp = 100f;
     public float hp;
 
-    public float myDamage;
-
     public bool isAction;
 
     public bool isSkill;
@@ -32,11 +30,18 @@ public class PlayerController_Platform : MonoBehaviourPun
     private Rigidbody playerRigid;
 
     public PlayerState currentState = PlayerState.Idle;
+    public PlayerState lastState;
 
     private bool isBlock;
 
     private float receiveDamage;
 
+    private bool isDamagaing;
+
+    public GameObject longDistanceObject;
+    public GameObject[] magics;
+    public Transform arrowPos;  
+    private float distance = 50;
     private void Start()
     {
         if (!photonView.IsMine)
@@ -149,17 +154,28 @@ public class PlayerController_Platform : MonoBehaviourPun
     int clickCount;
     float timer;
     bool isTimer;
-
-    
+    [PunRPC]
+    void LongDistanceAttack(float plusDistacne)
+    {
+        switch (GameManager.instance.myWeapon)
+        {
+            case (int)WeaponType.Bow:
+            case (int)WeaponType.Pistol:
+            case (int)WeaponType.Magic:
+                GameObject currentArrow = PhotonNetwork.Instantiate(longDistanceObject.name, arrowPos.transform.position, Quaternion.identity);
+                //currentArrow.GetComponent<Rigidbody>().AddForce(arrowPos.forward * distance * plusDistacne);
+                Debug.Log("rpc");
+                break;
+        }
+    }
     void Attack()
     {
-        
         if (isTimer)
         {
             timer += Time.deltaTime;
         }
 
-        if(isJump) return;
+        if (isJump) return;
         if (isAction) return;
         if (isSkill) return;
 
@@ -168,58 +184,61 @@ public class PlayerController_Platform : MonoBehaviourPun
             isAction = true;
             switch (clickCount)
             {
-                
                 case 0:
-                    
+
                     anim.SetTrigger("Attack1");
-                    
+                    lastState = PlayerState.Attack1;
+                    photonView.RPC("LongDistanceAttack", RpcTarget.All, 1f);
                     isTimer = true;
-                    
                     clickCount++;
                     break;
 
-                
+
                 case 1:
-                    
+
                     if (timer <= term)
-                    {                        
+                    {
                         anim.SetTrigger("Attack2");
-                        
+                        lastState = PlayerState.Attack2;
+                        photonView.RPC("LongDistanceAttack", RpcTarget.All, 1f);
                         clickCount++;
                     }
 
-                    
-                    else
-                    {                        
-                        anim.SetTrigger("Attack1");
-                        
-                        clickCount = 1;
-                    }
 
-                    
+                    else
+                    {
+                        anim.SetTrigger("Attack1");
+                        lastState = PlayerState.Attack1;
+                        photonView.RPC("LongDistanceAttack", RpcTarget.All, 1.2f);
+                        clickCount = 1;  
+                    }
                     timer = 0;
                     break;
 
-                
+
                 case 2:
-                    
+
                     if (timer <= term)
-                    {                        
+                    {
                         anim.SetTrigger("Attack3");
-                        
+                        lastState = PlayerState.Attack3;
+                        photonView.RPC("LongDistanceAttack", RpcTarget.All, 1f);
+
                         clickCount = 0;
-                        
+
                         isTimer = false;
+                        break;
                     }
 
-                    
+
                     else
-                    {                        
+                    {
                         anim.SetTrigger("Attack1");
-                        
+                        lastState = PlayerState.Attack1;
+                        photonView.RPC("LongDistanceAttack", RpcTarget.All, 1f);
+
                         clickCount = 1;
                     }
-                
                     timer = 0;
                     break;
             }
@@ -284,7 +303,6 @@ public class PlayerController_Platform : MonoBehaviourPun
         }
     }
 
-    
     void JumpEnd()
     {
         isJump = false;
@@ -309,6 +327,7 @@ public class PlayerController_Platform : MonoBehaviourPun
             isSkill = true;
             // Play Skill1 animation
             anim.SetTrigger("Skill1");
+            lastState = PlayerState.Skill1;
         }
     }
     // Skill2
@@ -322,6 +341,7 @@ public class PlayerController_Platform : MonoBehaviourPun
             isSkill = true;
             // Play Skill2 animation
             anim.SetTrigger("Skill2");
+            lastState = PlayerState.Skill2;
         }
     }
     // Skill3
@@ -335,6 +355,7 @@ public class PlayerController_Platform : MonoBehaviourPun
             isSkill = true;
             // Play Skill3 animation
             anim.SetTrigger("Skill3");
+            lastState = PlayerState.Skill3;
         }
     }
     // Skill4
@@ -348,6 +369,7 @@ public class PlayerController_Platform : MonoBehaviourPun
             isSkill = true;
             // Play Skill4 animation
             anim.SetTrigger("Skill4");
+            lastState = PlayerState.Skill4;
         }
     }
     // Skill5
@@ -361,6 +383,7 @@ public class PlayerController_Platform : MonoBehaviourPun
             isSkill = true;
             // Play Skill5 animation
             anim.SetTrigger("Skill5");
+            lastState = PlayerState.Skill5;
         }
     }
     // Skill6
@@ -378,6 +401,7 @@ public class PlayerController_Platform : MonoBehaviourPun
                 isSkill = true;
                 // Play Skill6 animation
                 anim.SetTrigger("Skill6");
+                lastState = PlayerState.Skill6;
             }
         }
     }
@@ -392,6 +416,7 @@ public class PlayerController_Platform : MonoBehaviourPun
             isSkill = true;
             // Play Skill7 animation
             anim.SetTrigger("Skill7");
+            lastState = PlayerState.Skill7;
         }
     }
     // Skill8
@@ -402,69 +427,97 @@ public class PlayerController_Platform : MonoBehaviourPun
         if (Input.GetKey(KeyCode.W) && dashAttackKey)
         {
             anim.SetTrigger("Skill8");
+            lastState = PlayerState.Skill8;
             isAction = true;
             isSkill = true;
             isJump = false;
             dashAttackKey = false;            
         }
     }
-    public void getDamage(float damage)
+    private void Die()
     {
-        if(hp >= damage)
-        {
-            hp -= damage;
-        }
-        else
+
+    }
+    [PunRPC]
+    private void GetDamage(float damage)
+    {
+        hp -= damage;
+        if (hp - damage <= 0)
         {
             hp = 0;
+            Die();
         }
-        if(hp > 0)
-        {
-            
-        }
+        UiManager.instance.photonView.RPC("checkHp", RpcTarget.All);
     }
+
     private void OnTriggerEnter(Collider other)
     {
+        if(!photonView.IsMine) return;
+
         if (other.CompareTag("Weapon"))
         {
-            var otherComponent = other.gameObject.GetComponentInParent<PlayerController_Platform>();
-            switch (otherComponent.currentState)
+            Transform parentTransform = other.transform;
+
+            while (parentTransform.parent != null)
             {
-                case PlayerState.Attack1:
-                    receiveDamage = 5f;
-                    break;
-                case PlayerState.Attack2:
-                    receiveDamage = 6f;
-                    break;
-                case PlayerState.Attack3:
-                    receiveDamage = 7f;
-                    break;
-                case PlayerState.Skill1:
-                    receiveDamage = 8f;
-                    break;
-                case PlayerState.Skill2:
-                    receiveDamage = 9f;
-                    break;
-                case PlayerState.Skill3:
-                    receiveDamage = 0f;
-                    break;
-                case PlayerState.Skill4:
-                    receiveDamage = 10f;
-                    break;
-                case PlayerState.Skill5:
-                    receiveDamage = 0f;
-                    break;
-                case PlayerState.Skill6:
-                    receiveDamage = 7f;
-                    break;
-                case PlayerState.Skill7:
-                    receiveDamage = 8f;
-                    break;
-                case PlayerState.Skill8:
-                    receiveDamage = 9f;
-                    break;
+                parentTransform = parentTransform.parent;
             }
-            hp -= receiveDamage;
-        }
+            Debug.Log(parentTransform.name);
+
+            var otherComponent = parentTransform.GetComponent<PlayerController_Platform>();
+
+
+            if (otherComponent.currentState != lastState) isDamagaing = false;
+
+        if (!isDamagaing)
+        {
+                if (otherComponent != null) Debug.Log(otherComponent.name);
+
+                if (!parentTransform.GetComponent<PhotonView>().IsMine)
+                {
+                    switch (otherComponent.currentState)
+                    {
+                        case PlayerState.Attack1:
+                            receiveDamage = 5f;
+                            break;
+                        case PlayerState.Attack2:
+                            receiveDamage = 6f;
+                            break;
+                        case PlayerState.Attack3:
+                            receiveDamage = 7f;
+                            break;
+                        case PlayerState.Skill1:
+                            receiveDamage = 8f;
+                            break;
+                        case PlayerState.Skill2:
+                            receiveDamage = 9f;
+                            break;
+                        case PlayerState.Skill3:
+                            receiveDamage = 0f;
+                            break;
+                        case PlayerState.Skill4:
+                            receiveDamage = 10f;
+                            break;
+                        case PlayerState.Skill5:
+                            receiveDamage = 0f;
+                            break;
+                        case PlayerState.Skill6:
+                            receiveDamage = 7f;
+                            break;
+                        case PlayerState.Skill7:
+                            receiveDamage = 8f;
+                            break;
+                        case PlayerState.Skill8:
+                            receiveDamage = 9f;
+                            break;
+                        default:
+                            receiveDamage = 0;
+                            break;
+                    }
+                    photonView.RPC("GetDamage", RpcTarget.All, receiveDamage);
+                    isDamagaing = true;
+                }
+            }
+        } 
     }
 }
